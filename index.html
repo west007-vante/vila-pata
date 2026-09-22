@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Vila Pata — clínica veterinária e pet shop</title>
+  <meta name="description" content="Role a página e voe pela Vila Pata: consulta, banho e tosa, pet shop e creche para cães e gatos." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=Figtree:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root, .sw-root {
+      --sw-bg: #F3EAE0;
+      --sw-ink: #2E3A3F;
+      --sw-ink-soft: #6B7A7E;
+      --sw-accent: #D98A6A;
+      --sw-font-display: "Fraunces", Georgia, serif;
+      --sw-font-body: "Figtree", -apple-system, sans-serif;
+    }
+    html, body { margin: 0; background: var(--sw-bg); color: var(--sw-ink); font-family: var(--sw-font-body); }
+    /* fecho real depois do voo: onde, quando, como agendar */
+    .vp-fim { position: relative; z-index: 5; background: var(--sw-ink); color: #F4EDE3; padding: 96px 24px 56px; }
+    .vp-fim__in { max-width: 1080px; margin: 0 auto; display: grid; grid-template-columns: 1.3fr 1fr; gap: 64px; align-items: end; }
+    .vp-fim h2 { font-family: var(--sw-font-display); font-weight: 800; font-size: clamp(2.2rem, 5vw, 4rem); line-height: .98; margin: 0; letter-spacing: -.02em; }
+    .vp-fim h2 em { font-style: normal; color: #F2C66D; }
+    .vp-fim dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 14px 24px; font-size: 1rem; }
+    .vp-fim dt { color: #8FAE95; font-weight: 700; }
+    .vp-fim dd { margin: 0; }
+    .vp-fim a.vp-zap { display: inline-block; margin-top: 32px; background: #D98A6A; color: #2E3A3F; font-weight: 700; text-decoration: none; padding: 16px 28px; border-radius: 14px; }
+    .vp-fim small { display: block; max-width: 1080px; margin: 72px auto 0; color: #6B7A7E; font-size: .8rem; }
+    @media (max-width: 760px) { .vp-fim__in { grid-template-columns: 1fr; gap: 40px; } }
+  </style>
+</head>
+<body>
+  <div id="top"></div>
+  <div id="world"></div>
+
+  <section class="vp-fim" id="agendar">
+    <div class="vp-fim__in">
+      <div>
+        <h2>Uma vila inteira<br>cuidando de <em>quem te espera</em> na porta.</h2>
+        <a class="vp-zap" href="#agendar">Agendar pelo WhatsApp</a>
+      </div>
+      <dl>
+        <dt>Clínica</dt><dd>seg a sáb, 8h–20h · emergência 24h</dd>
+        <dt>Banho e tosa</dt><dd>seg a sáb, 9h–18h · leva e traz</dd>
+        <dt>Pet shop</dt><dd>todos os dias, 9h–21h</dd>
+        <dt>Creche</dt><dd>diárias e hospedagem para cães e gatos</dd>
+      </dl>
+    </div>
+    <small>Site de teste do scroll-world — marca, horários e endereço são fictícios.</small>
+  </section>
+
+  <script src="scrub-engine.js"></script>
+  <script>
+    // VIDEOS=false volta ao modo só-cenas (sem clipes).
+    const VIDEOS = true;
+    const V = (u) => VIDEOS ? u : undefined;
+    mountScrollWorld(document.getElementById('world'), {
+      brand: { name: 'Vila Pata', href: '#top' },
+      cta: { label: 'Agendar', href: '#agendar' },
+      hint: 'role para entrar',
+      diveScroll: 1.3,
+      connScroll: 0.9,
+      sections: [
+        { id: 'entrada', label: 'A Vila', still: 'assets/entrada.webp', stillMobile: 'assets/entrada-m.webp',
+          clip: V('assets/vid/entrada.mp4'), clipMobile: V('assets/vid/entrada-m.mp4'),
+          accent: '#D98A6A', scroll: 1.6, linger: 0.4,
+          eyebrow: 'Clínica · banho · pet shop · creche',
+          title: 'Tudo o que eles precisam, numa esquina só.',
+          body: 'Cães e gatos são recebidos pelo nome — e você resolve consulta, banho e ração na mesma visita.',
+          tags: ['Cães e gatos', 'Emergência 24h'] },
+        { id: 'consulta', label: 'Consulta', still: 'assets/consulta.webp', stillMobile: 'assets/consulta-m.webp',
+          clip: V('assets/vid/consulta.mp4'), clipMobile: V('assets/vid/consulta-m.mp4'),
+          accent: '#8FAE95',
+          eyebrow: 'Clínica veterinária',
+          title: 'Consulta sem pressa, sem susto.',
+          body: 'Sala separada para gatos, exames no próprio local e o veterinário explica tudo antes de fazer.',
+          tags: ['Vacinas', 'Exames', 'Raio-x'] },
+        { id: 'banho', label: 'Banho e tosa', still: 'assets/banho.webp', stillMobile: 'assets/banho-m.webp',
+          clip: V('assets/vid/banho.mp4'), clipMobile: V('assets/vid/banho-m.mp4'),
+          accent: '#9CC3D5',
+          eyebrow: 'Banho e tosa',
+          title: 'Sai cheiroso. Volta feliz.',
+          body: 'Produtos hipoalergênicos, secagem sem barulho alto e foto no seu WhatsApp quando estiver pronto.',
+          tags: ['Leva e traz', 'Tosa na tesoura'] },
+        { id: 'petshop', label: 'Pet shop', still: 'assets/petshop.webp', stillMobile: 'assets/petshop-m.webp',
+          clip: V('assets/vid/petshop.mp4'), clipMobile: V('assets/vid/petshop-m.mp4'),
+          accent: '#F2C66D',
+          eyebrow: 'Pet shop',
+          title: 'A ração certa, indicada por quem examinou.',
+          body: 'Alimentação, brinquedos e acessórios escolhidos junto com a equipe da clínica.',
+          tags: ['Entrega no bairro'] },
+        { id: 'creche', label: 'Creche', still: 'assets/creche.webp', stillMobile: 'assets/creche-m.webp',
+          clip: V('assets/vid/creche.mp4'), clipMobile: V('assets/vid/creche-m.mp4'),
+          accent: '#8FAE95',
+          eyebrow: 'Creche e hotel',
+          title: 'Enquanto você trabalha, eles brincam.',
+          body: 'Quintal para os cães, sala tranquila para os gatos e câmera para você espiar do celular.',
+          tags: ['Diárias', 'Hospedagem'] },
+        { id: 'finale', label: 'Agendar', still: 'assets/finale.webp', stillMobile: 'assets/finale-m.webp',
+          clip: V('assets/vid/finale.mp4'), clipMobile: V('assets/vid/finale-m.mp4'),
+          accent: '#D98A6A', scroll: 1.5, linger: 0.5,
+          eyebrow: 'Vila Pata',
+          title: 'A casa deles fora de casa.',
+          body: 'Agende a primeira visita — a avaliação de chegada é por nossa conta.',
+          tags: [],
+          cta: { primary: { label: 'Agendar pelo WhatsApp', href: '#agendar' },
+                 secondary: { label: 'Ver horários', href: '#agendar' } } },
+      ],
+      connectors: VIDEOS ? [1,2,3,4,5].map(i => `assets/vid/conn${i}.mp4`) : [],
+      connectorsMobile: VIDEOS ? [1,2,3,4,5].map(i => `assets/vid/conn${i}-m.mp4`) : [],
+    });
+  </script>
+</body>
+</html>
