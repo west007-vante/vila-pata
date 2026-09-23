@@ -29,6 +29,9 @@
     .vp-fim a.vp-zap { display: inline-block; margin-top: 32px; background: #D98A6A; color: #2E3A3F; font-weight: 700; text-decoration: none; padding: 16px 28px; border-radius: 14px; }
     .vp-fim small { display: block; max-width: 1080px; margin: 72px auto 0; color: #6B7A7E; font-size: .8rem; }
     @media (max-width: 760px) { .vp-fim__in { grid-template-columns: 1fr; gap: 40px; } }
+    /* no rodapé a copy fixa do motor some: o texto do rodapé passa a ser o único texto da tela */
+    #world .sw-copylayer, #world .sw-route, #world .sw-hint { transition: opacity .45s ease; }
+    #world.no-copy .sw-copylayer, #world.no-copy .sw-route, #world.no-copy .sw-hint { opacity: 0; pointer-events: none; }
   </style>
 </head>
 <body>
@@ -111,6 +114,10 @@
       connectors: VIDEOS ? [1,2,3,4,5].map(i => `assets/vid/conn${i}.mp4`) : [],
       connectorsMobile: VIDEOS ? [1,2,3,4,5].map(i => `assets/vid/conn${i}-m.mp4`) : [],
     });
+    const rodape = document.getElementById('agendar'), mundo = document.getElementById('world');
+    if (rodape && 'IntersectionObserver' in window) {
+      new IntersectionObserver(es => es.forEach(e => mundo.classList.toggle('no-copy', e.isIntersecting)), { threshold: 0.12 }).observe(rodape);
+    }
   </script>
 </body>
 </html>
